@@ -1,4 +1,8 @@
-def janken
+$result_janken = "win"
+
+$result_janken = "lose"
+
+def janken　#ジャンケンメソッドのはじめ
   start_shout = "ジャンケン…"
   shout = "ホイ！"
   puts "#{start_shout}"
@@ -36,37 +40,42 @@ else
 	$result_janken = "lose"
 	return attimuite_hoi
 end
-end
+end #ジャンケンメソッドの終わり
 
-next_game = true
-while next_game 
-  next_game = janken
-end
+
 
 
 def attimuite_hoi
+  directions = ["上","下","左","右"]
+  program_direction = rand(4)
   puts "あっち向いて〜"
   puts "0(上)1(下)2(左)3(右)"
   player_direction = gets.to_i
+  
   if player_direction > 4
     puts "入力された値が無効です"
+    return false
   end
+  
   puts "ホイ！"
   puts "____________________"
-  
-  
-  directions = ["上", "下" , "左" , "右"]
-  program_direction = rand(4)
-  
-  puts "あなた: #{directions[player_direction]}"
-　puts "相手: #{directions[program_direction]}"
+  puts "あなた: #{directions[player_direction]}です"
+　puts "相手: #{directions[program_direction]}です"
+　puts "____________________"
 　
 　if player_direction == program_direction && $result_janken = "win"
 　  puts "あなたの勝ちです"
+　  return false
 　elsif player_direction == program_direction && $result_janken = "lose"
-　  puts "あなたの負けです"
+　   puts "あなたの負けです"
+　   return false
 　else
-　  puts "終わり"
+　  return janken
 　end
 end
 
+next_game = true
+
+while next_game do
+  next_game = janken
+end
